@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protect Your Lot | Deed Restriction Builder, Portsmouth VA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1f2a27;--ink-soft:#4c5854;--ink-faint:#7a847f;
+    --paper:#ebeee7;--surface:#fbfbf8;--surface-2:#f4f5ef;
+    --line:#d4d6cb;--line-strong:#b9bcb0;
+    --pine:#2f5d50;--pine-dark:#22463c;--pine-tint:#e3ece7;
+    --oxblood:#7a2e2e;--amber:#8a6a1f;--amber-tint:#f4ecd6;
+    --radius:10px;
+    --font-display:"Spectral",Georgia,"Times New Roman",serif;
+    --font-ui:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --measure:44rem;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-ui);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--measure);margin:0 auto;padding:0 20px;}
+
+  header.hero{position:relative;background:var(--pine-dark);color:#eef2ee;overflow:hidden;border-bottom:3px solid var(--pine);}
+  header.hero .plat{position:absolute;inset:0;opacity:.16;pointer-events:none;}
+  header.hero .inner{position:relative;max-width:var(--measure);margin:0 auto;padding:56px 20px 46px;}
+  .eyebrow{font-family:var(--font-ui);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:600;color:#a9c6bb;}
+  header.hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(2.1rem,6vw,3.3rem);line-height:1.04;margin:.5rem 0 .4rem;letter-spacing:-.01em;}
+  header.hero p.thesis{font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,2.6vw,1.35rem);color:#cfe0d8;margin:0 0 1.1rem;max-width:34rem;}
+  header.hero .sub{font-size:.98rem;color:#bcd0c7;max-width:36rem;margin:0;}
+
+  main{padding:12px 0 40px;}
+  section.step{padding:34px 0 8px;}
+  .step-head{display:flex;align-items:baseline;gap:.7rem;margin-bottom:.35rem;}
+  .step-num{font-family:var(--font-display);font-weight:700;color:var(--pine);font-size:1.05rem;border:1.5px solid var(--pine);border-radius:50%;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:var(--pine-tint);}
+  .step-label{text-transform:uppercase;letter-spacing:.15em;font-size:.72rem;font-weight:600;color:var(--ink-faint);}
+  section.step h2{font-family:var(--font-display);font-weight:600;font-size:1.7rem;margin:.1rem 0 .6rem;letter-spacing:-.01em;}
+  section.step > .wrap > p{color:var(--ink-soft);}
+
+  .facts{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.7rem;}
+  .facts li{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--pine);border-radius:var(--radius);padding:14px 16px;}
+  .facts li b{color:var(--ink);}
+  .callout{margin-top:1rem;background:var(--amber-tint);border:1px solid #e2d3a6;border-radius:var(--radius);padding:14px 16px;font-size:.95rem;color:#5f4c17;}
+  .callout strong{color:#4a3a10;}
+  .callout a{color:#5f4c17;font-weight:600;}
+
+  /* before-you-begin panel */
+  .prep{background:#fff;border:1px solid var(--pine);border-top:5px solid var(--pine);border-radius:var(--radius);padding:18px 20px;margin:6px 0 22px;}
+  .prep h3{font-family:var(--font-display);font-size:1.3rem;margin:0 0 6px;color:var(--pine-dark);}
+  .prep p{color:var(--ink-soft);margin:0 0 10px;}
+  .prep a{color:var(--pine-dark);font-weight:600;}
+  .prep .addr{font-family:var(--font-ui);background:var(--surface-2);border-left:3px solid var(--pine);padding:10px 13px;border-radius:6px;margin:8px 0;font-size:.95rem;line-height:1.5;}
+  .prep .warn{background:var(--amber-tint);border:1px solid #e2d3a6;border-radius:8px;padding:10px 13px;font-size:.9rem;color:#5f4c17;margin-top:8px;}
+  .prep .fine{font-size:.82rem;color:var(--ink-faint);margin:10px 0 0;}
+
+  form{margin-top:.5rem;}
+  fieldset{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:18px 18px 6px;margin:0 0 18px;}
+  legend{font-family:var(--font-display);font-weight:600;font-size:1.15rem;padding:0 8px;color:var(--pine-dark);}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-weight:600;font-size:.98rem;margin-bottom:3px;}
+  .req{color:var(--oxblood);font-weight:700;}
+  .opt{color:var(--ink-faint);font-weight:500;font-size:.85rem;}
+  .help{display:block;color:var(--ink-soft);font-size:.86rem;margin:2px 0 7px;line-height:1.45;}
+  .help a{color:var(--pine-dark);font-weight:600;}
+  input[type=text],input[type=email],input[type=number],textarea,select{width:100%;font-family:var(--font-ui);font-size:1rem;color:var(--ink);background:#fff;border:1.5px solid var(--line-strong);border-radius:8px;padding:11px 12px;transition:border-color .15s,box-shadow .15s;}
+  textarea{min-height:104px;resize:vertical;line-height:1.5;}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pine);box-shadow:0 0 0 3px rgba(47,93,80,.18);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:560px){.two-col{grid-template-columns:1fr;}}
+
+  .zref{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:.85rem;color:var(--ink-soft);margin-bottom:16px;line-height:1.5;}
+  .zref b{color:var(--ink);}
+  .zref ul{margin:6px 0;padding-left:1.1rem;}
+  .zref a{color:var(--pine-dark);font-weight:600;}
+  .rule{border:1.5px solid var(--line-strong);border-radius:8px;padding:12px 14px;margin-bottom:12px;background:#fff;}
+  .ruletoggle{display:flex;align-items:center;gap:9px;font-weight:600;font-size:1rem;cursor:pointer;}
+  .ruletoggle input{width:auto;margin:0;flex:0 0 auto;transform:scale(1.2);}
+  .rulebody{margin-top:10px;}
+  .rule.off{background:var(--surface-2);opacity:.65;}
+  .rule.off .rulebody{display:none;}
+  .sublabel{display:block;font-weight:600;font-size:.9rem;margin:6px 0 3px;}
+
+  .choice{border:1.5px solid var(--line-strong);border-radius:8px;padding:12px 14px;margin-bottom:10px;background:#fff;cursor:pointer;display:flex;gap:10px;align-items:flex-start;}
+  .choice input{margin-top:4px;flex:0 0 auto;width:auto;}
+  .choice .c-body{font-size:.95rem;}
+  .choice .c-body b{display:block;}
+  .choice.selected{border-color:var(--pine);background:var(--pine-tint);}
+  .reveal{display:none;padding:2px 2px 2px 30px;margin-bottom:12px;}
+  .reveal.open{display:block;}
+
+  .field-error{color:var(--oxblood);font-size:.85rem;margin-top:4px;display:none;font-weight:500;}
+  .field.invalid input,.field.invalid textarea,.field.invalid select{border-color:var(--oxblood);}
+  .field.invalid .field-error{display:block;}
+
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0 4px;}
+  button{font-family:var(--font-ui);font-weight:600;font-size:1rem;border-radius:8px;padding:13px 22px;cursor:pointer;border:1.5px solid transparent;transition:background .15s,border-color .15s,transform .05s;}
+  button:active{transform:translateY(1px);}
+  .btn-primary{background:var(--pine);color:#fff;}
+  .btn-primary:hover{background:var(--pine-dark);}
+  .btn-secondary{background:#fff;color:var(--pine-dark);border-color:var(--line-strong);}
+  .btn-secondary:hover{border-color:var(--pine);}
+  button:focus-visible{outline:3px solid var(--pine);outline-offset:2px;}
+
+  .error-summary{display:none;background:#f7e4e0;border:1px solid #d9a99f;border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;color:#6b241b;}
+  .error-summary.show{display:block;}
+  .error-summary b{display:block;margin-bottom:4px;}
+  .error-summary ul{margin:.3rem 0 0;padding-left:1.2rem;}
+  .error-summary a{color:#6b241b;}
+
+  #output-section{display:none;padding-top:10px;}
+  #output-section.show{display:block;}
+  .doc-toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--pine-tint);border:1px solid #bcd2c9;border-radius:var(--radius);padding:14px 16px;margin-bottom:18px;}
+  .doc-toolbar p{margin:0;flex:1 1 240px;font-size:.92rem;color:var(--pine-dark);}
+
+  .instrument{background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 1px 0 var(--line-strong),0 14px 30px -22px rgba(31,42,39,.5);padding:52px 56px;font-family:var(--font-display);color:#161d1b;font-size:1rem;line-height:1.62;position:relative;}
+  @media(max-width:560px){.instrument{padding:30px 22px;}}
+  .stamp-box{float:right;width:200px;height:104px;margin:0 0 12px 16px;border:1.5px dashed var(--line-strong);border-radius:4px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--font-ui);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);padding:8px;line-height:1.4;}
+  .instrument .meta{font-family:var(--font-ui);font-size:.82rem;color:#33403c;margin-bottom:2px;}
+  .instrument h3.doc-title{font-weight:700;text-align:center;font-size:1.28rem;letter-spacing:.02em;margin:26px 0 6px;clear:both;}
+  .instrument h3.doc-sub{font-weight:500;font-style:italic;text-align:center;font-size:1rem;color:#3a4642;margin:0 0 22px;}
+  .instrument p{margin:0 0 13px;text-align:justify;}
+  .instrument .recital{margin-bottom:11px;}
+  .instrument .clause{margin:0 0 13px;}
+  .instrument .clause b{text-transform:uppercase;font-size:.94em;letter-spacing:.02em;}
+  .instrument .sig{margin-top:26px;}
+  .instrument .sig .line{border-bottom:1px solid #161d1b;width:340px;max-width:100%;height:1.4rem;margin-top:22px;}
+  .instrument .sig .cap{font-family:var(--font-ui);font-size:.78rem;color:#33403c;}
+  .instrument .notary{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-size:.96rem;}
+  .instrument .fill{display:inline-block;border-bottom:1px solid #55605c;min-width:120px;}
+
+  .filing{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin-top:22px;}
+  .filing h3{font-family:var(--font-display);font-size:1.35rem;margin:0 0 4px;color:var(--pine-dark);}
+  .filing ol{margin:.6rem 0 0;padding-left:1.2rem;}
+  .filing ol li{margin-bottom:12px;}
+  .filing li b{color:var(--ink);}
+  .filing a{color:var(--pine-dark);font-weight:600;}
+  .filing .addr{font-family:var(--font-ui);background:var(--surface-2);border-left:3px solid var(--pine);padding:8px 12px;border-radius:6px;margin:6px 0;font-size:.94rem;line-height:1.5;}
+  .filing .tip{background:var(--amber-tint);border:1px solid #e2d3a6;border-radius:8px;padding:10px 13px;font-size:.9rem;color:#5f4c17;margin-top:6px;}
+  .csguide{margin-top:18px;border-top:1px solid var(--line);padding-top:16px;}
+  .csguide h4{font-family:var(--font-display);font-size:1.2rem;margin:0 0 4px;color:var(--pine-dark);}
+  .csguide p.intro{font-size:.9rem;color:var(--ink-soft);margin:0 0 10px;}
+  .csguide dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.92rem;}
+  .csguide dt{font-weight:600;color:var(--ink);}
+  .csguide dd{margin:0;color:var(--ink-soft);}
+  .csguide .csnote{font-size:.85rem;color:var(--ink-faint);margin-top:10px;}
+  @media(max-width:560px){.csguide dl{grid-template-columns:1fr;gap:2px 0;}.csguide dd{margin-bottom:8px;}}
+
+  footer{border-top:1px solid var(--line);background:var(--surface);margin-top:30px;}
+  footer .wrap{padding:22px 20px 34px;}
+  .help-box{background:var(--pine-tint);border:1px solid #bcd2c9;border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;}
+  .help-box b{color:var(--pine-dark);}
+  .help-box a{color:var(--pine-dark);font-weight:600;}
+  .disclaimer{font-size:.82rem;color:var(--ink-faint);line-height:1.55;}
+  .disclaimer b{color:var(--ink-soft);}
+
+  @media print{
+    @page{margin:1in;}
+    body{background:#fff;color:#000;font-size:12pt;}
+    .no-print{display:none !important;}
+    #output-section{display:block !important;padding:0;}
+    .doc-toolbar{display:none !important;}
+    .instrument{box-shadow:none;border:none;border-radius:0;padding:0;padding-top:1.4in;font-size:12pt;color:#000;}
+    .stamp-box{border-color:#000;color:#000;}
+    .filing{border:none;background:#fff;padding:0;page-break-before:always;}
+    .filing .addr,.filing .tip{background:#fff;border-color:#000;}
+    .instrument .sig,.instrument .notary{page-break-inside:avoid;}
+    a{color:#000;text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     CONFIG - the campaign can edit these two blocks.
+     ========================================================= -->
+<script>
+  /* 1) HELP CONTACT (optional).
+        To show a "Need help?" box at the bottom of the page, set
+        SHOW_HELP_CONTACT to true and fill in a name and email below.
+        Leave it false to hide the box entirely. */
+  const SHOW_HELP_CONTACT = false;
+  const HELP_CONTACT = {
+    name:  "[Campaign contact name]",
+    email: "[email@example.com]"
+  };
+
+  /* 2) CIVIC LEAGUES - full official Portsmouth roster (alphabetical).
+        Owners pick their neighborhood league, or choose "Other" and
+        type a name. Edit this list if the city's roster changes. */
+  const CIVIC_LEAGUES = [
+    "Briarwood Neighborhood Association",
+    "Brighton/Prentis Park Civic League",
+    "Calvary Baptist Church",
+    "Central Civic Forum",
+    "Churchland Civic League",
+    "Cradock Civic League",
+    "Ebony Heights Civic League",
+    "Fairville Neighborhood Civic League",
+    "Glenshellah Homeowners Association",
+    "Grove Church",
+    "Hidden Cove Homeowners Association",
+    "Highland Biltmore Civic League",
+    "Historical Truxton Civic League",
+    "Hosiers Oaks Civic League",
+    "Huntington Park Condos Neighborhood Watch",
+    "Lake Shores Civic League",
+    "Lee Ward Civic League/North Brighton",
+    "Long Point Civic League",
+    "Loxley Place Civic League",
+    "Madison Ward Civic League",
+    "Merrimac Point Civic League",
+    "Mount Hermon Civic League",
+    "New Port Civic League",
+    "New Waterview Civic League",
+    "Oasis Social Ministry",
+    "Olde Towne Civic League",
+    "Olde Towne South Community League",
+    "Park Manor Civic League",
+    "Park View Civic League",
+    "Peachtree Community Association",
+    "Port Norfolk Civic League",
+    "Portsmouth Acres Civic League",
+    "Prentis Place Civic League",
+    "River Shore Civic League",
+    "Shea Terrace Civic League",
+    "Simonsdale Civic League",
+    "South Fairview Heights Civic League",
+    "Sugar Hill Civic League",
+    "Swimming Point Civic League",
+    "The Estates at River Point",
+    "Twin Pines Civic League",
+    "United Civic League of Cavalier Manor and Police Community Relations (PCR)",
+    "Villas at River Pointe",
+    "Wesley Community Center",
+    "West Parkview Community League",
+    "Westbury Civic League",
+    "Westbury Improvement Association",
+    "Westhaven Civic League",
+    "Westmoreland Civic League",
+    "Westwood Neighborhood Watch",
+    "Willow Breeze Neighborhood Watch",
+    "Wilson Ward/Gosport Civic League",
+    "Wise Beach Civic League and Neighborhood Watch"
+  ];
+</script>
+
+<header class="hero">
+  <svg class="plat" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 800 300" aria-hidden="true">
+    <g fill="none" stroke="#dfeae4" stroke-width="1">
+      <path d="M0 70 H800 M0 150 H800 M0 230 H800"/>
+      <path d="M120 0 V300 M240 0 V300 M360 0 V300 M480 0 V300 M600 0 V300 M720 0 V300"/>
+      <path d="M120 150 L180 150 L180 230 M360 70 L420 70 L420 150 M600 150 L660 150 L660 230" stroke-width="2"/>
+    </g>
+  </svg>
+  <div class="inner">
+    <div class="eyebrow">For property owners across Portsmouth, Virginia</div>
+    <h1>Protect your lot,<br>permanently.</h1>
+    <p class="thesis">Put a private rule on your own land that no future owner, and no developer, can undo.</p>
+    <p class="sub">This page helps you create a legal document that keeps narrow, cramped houses off your property for good. Read the short overview, fill in your details, and print a finished document ready to sign and file at the courthouse. It takes about ten minutes.</p>
+  </div>
+</header>
+
+<main>
+  <!-- STEP 1 -->
+  <section class="step no-print" id="learn">
+    <div class="wrap">
+      <div class="step-head">
+        <span class="step-num">1</span>
+        <span class="step-label">Understand what you're doing</span>
+      </div>
+      <h2>What this document does</h2>
+      <p>It is a <b>deed restriction</b>, a rule you choose to record against your own property. Once filed at the courthouse, it travels with the land and binds every future owner.</p>
+      <ul class="facts">
+        <li><b>It sets a hard minimum on side yards.</b> No house can be built on your lot with side yards smaller than the width you choose (7 feet by default). That keeps out the skinny, 3 foot setback builds.</li>
+        <li><b>It outlasts the zoning board.</b> Even if the city grants someone a permit for narrow setbacks, your private rule is stricter, and the stricter rule still holds. The city will not cancel it.</li>
+        <li><b>It makes your lot far less useful to a developer.</b> A lot that cannot be built narrow is often a lot a flipper walks away from.</li>
+        <li><b>You stay in control.</b> The rule only limits skinny building and subdivision. It does not touch how you live in your home, and you can still garden, fence, and maintain your property.</li>
+      </ul>
+      <div class="callout">
+        <strong>A note on tax benefits:</strong> this plain restriction gives protection but no tax break. If your lot is vacant and you would consider keeping it as permanent open space, a conservation easement or an outright land donation can protect it and may earn a Virginia tax credit. That is a larger step with its own rules. You can research it yourself through the <a href="https://www.dcr.virginia.gov/land-conservation/lp-taxcredit" target="_blank" rel="noopener">Virginia Department of Conservation and Recreation</a> and the <a href="https://www.vof.org" target="_blank" rel="noopener">Virginia Outdoors Foundation</a>, or ask a real estate attorney. You can record this protection now and still choose to donate later; recording it does not block a future donation. Keep in mind, though, that this covenant could lower your land's value by restricting it, and a donation's tax benefit is based on the value you give up at the time you donate, so donating later on top of this covenant may produce a smaller tax break than donating the unrestricted land would. If a donation is likely, it is worth asking a land trust or tax advisor about the best order before you record.
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step no-print" id="build">
+    <div class="wrap">
+      <div class="step-head">
+        <span class="step-num">2</span>
+        <span class="step-label">Fill in your details</span>
+      </div>
+      <h2>Your information</h2>
+
+      <div class="prep">
+        <h3>Before you begin: have your deed handy</h3>
+        <p>You will need the <b>full legal description</b> of your property, which is written on your recorded deed. Don't have your deed? Get a copy from the <b>Clerk of the Circuit Court</b>, which keeps all recorded deeds (copies cost about 50 cents per page). This is the same office where you will record your finished document:</p>
+        <div class="addr">
+          Clerk of the Circuit Court (City of Portsmouth)<br>
+          1345 Court Street, Suite 101<br>
+          Portsmouth, VA 23705-1217<br>
+          <span style="color:var(--ink-faint);">Please confirm the current phone and hours on the city or Virginia Courts website before you visit.</span>
+        </div>
+        <p>To look up your <b>parcel ID (GPIN)</b> and confirm your address, use the city <b>Assessor's</b> online search: <a href="http://data.portsmouthva.gov/assessor/data/realestatesearch.aspx" target="_blank" rel="noopener">Portsmouth Real Estate Assessor Search</a>. (The Assessor is a different office from the Clerk.)</p>
+        <div class="warn"><b>Important:</b> the Assessor site shows only a short description (for example, &ldquo;MOLLIE F JARVIS EST PARC 1&rdquo;). That short version is <b>not</b> enough to record. Use the full legal description from your deed.</div>
+        <p class="fine">This is a free self help tool, not legal advice. See the full notice at the bottom of the page.</p>
+      </div>
+
+      <p>Fields marked <span class="req">*</span> are required. If you get stuck on any of them, do not guess. Contact a real estate attorney or other real estate professional (or the campaign help contact at the bottom of this page, if one is shown).</p>
+
+      <div class="error-summary" id="errorSummary" role="alert" aria-live="assertive">
+        <b>A few things need attention before we can build your document:</b>
+        <ul id="errorList"></ul>
+      </div>
+
+      <form id="deedForm" novalidate>
+        <fieldset>
+          <legend>Owner &amp; property</legend>
+
+          <div class="field" data-check="owner1">
+            <label for="owner1">Full legal name of owner <span class="req">*</span></label>
+            <span class="help">Exactly as it appears on your current deed.</span>
+            <input type="text" id="owner1" autocomplete="name">
+            <span class="field-error">Please enter the owner's full legal name.</span>
+          </div>
+
+          <div class="field">
+            <label for="owner2">Second owner's full legal name <span class="opt">(optional)</span></label>
+            <span class="help">Add a co-owner (for example, a spouse) only if they are on the deed too.</span>
+            <input type="text" id="owner2" autocomplete="name">
+          </div>
+
+          <div class="field" data-check="mailing">
+            <label for="mailing">Owner mailing address <span class="req">*</span></label>
+            <span class="help">Where the courthouse should return the recorded document. Street, city, state, ZIP.</span>
+            <input type="text" id="mailing" autocomplete="street-address">
+            <span class="field-error">Please enter a mailing address.</span>
+          </div>
+
+          <div class="field" data-check="property">
+            <label for="property">Property street address <span class="req">*</span></label>
+            <span class="help">The address of the lot you are protecting, in Portsmouth.</span>
+            <input type="text" id="property">
+            <span class="field-error">Please enter the property's street address.</span>
+          </div>
+
+          <div class="two-col">
+            <div class="field" data-check="gpin">
+              <label for="gpin">Parcel ID / GPIN <span class="req">*</span></label>
+              <span class="help">Find it on your tax bill, or look it up on the Assessor search linked above.</span>
+              <input type="text" id="gpin">
+              <span class="field-error">Please enter your parcel ID / GPIN.</span>
+            </div>
+            <div class="field" data-check="zip">
+              <label for="zip">Property ZIP code <span class="req">*</span></label>
+              <span class="help">The ZIP for the lot.</span>
+              <input type="text" id="zip" inputmode="numeric">
+              <span class="field-error">Please enter the ZIP code.</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Legal description</legend>
+          <div class="field" data-check="legal">
+            <label for="legal">Legal description of the property <span class="req">*</span></label>
+            <span class="help">
+              Copy this <b>word for word</b> from your recorded deed. It is usually the paragraph that begins
+              &ldquo;<em>ALL that certain lot&hellip;</em>&rdquo; or &ldquo;<em>being the same property conveyed&hellip;</em>&rdquo;
+              The Assessor site only shows a short version (like &ldquo;MOLLIE F JARVIS EST PARC 1&rdquo;), which is not
+              enough to record, so use the full text from your deed. If you cannot find it, contact a real estate
+              attorney or other real estate professional (or the campaign help contact below, if one is shown).
+            </span>
+            <textarea id="legal" placeholder="Example: ALL that certain lot, piece or parcel of land, with the buildings and improvements thereon, situate in the City of Portsmouth, Virginia, known as Lot 14, Block C, as shown on the plat of ... recorded in Map Book 8, Page 42..."></textarea>
+            <span class="field-error">Please paste the legal description from your deed.</span>
+          </div>
+          <div class="field">
+            <label for="deedref">Prior deed reference <span class="opt">(recommended)</span></label>
+            <span class="help">The Instrument Number, or Deed Book and Page, of the deed that gave you the property. It is on the first page of your deed. Leave blank if you cannot find it.</span>
+            <input type="text" id="deedref" placeholder="Instrument No. 2019xxxxxxx  (or Deed Book 1234, Page 567)">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>The rules you're setting</legend>
+          <p class="help" style="margin-bottom:14px;">Turn on the rules you want. Pick any one, two, or all three, and leave off the rest. At least one is required.</p>
+
+          <div class="zref">
+            <b>Current Portsmouth zoning limits</b> (single-family, for reference). What the City allows depends on your zoning district:
+            <ul>
+              <li>NR / GR (Neighborhood or General Residential): side yard 10 ft &middot; height 36 ft &middot; coverage 45%</li>
+              <li>UR (Urban Residential): side yard 7 ft &middot; height 36 ft &middot; coverage 55%</li>
+            </ul>
+            Other districts (UR-M, historic, and downtown) differ. Confirm your district and its current numbers in the <a href="https://library.municode.com/va/portsmouth/codes/code_of_ordinances?nodeId=CH40.2ZO_ARTIIZODI_S40.2-218ARBUDEBUSEST" target="_blank" rel="noopener">Portsmouth zoning code (Sec. 40.2-218)</a>. Your private rule can be <b>stricter</b> than these limits, but not looser: the City's minimum always applies on top of your rule.
+          </div>
+
+          <div class="rule">
+            <label class="ruletoggle"><input type="checkbox" id="incSetback" checked> Minimum side-yard setback</label>
+            <div class="rulebody" id="body-setback">
+              <span class="help"><b>Purpose:</b> keep a house from being built right up against the side lot line, crowding the homes next door and cutting off their light, air, and drainage. Set the smallest side yard you want to guarantee, and use at least your district's minimum (7 ft in UR, 10 ft in NR/GR).</span>
+              <label for="setback" class="sublabel">Minimum side yard, in feet</label>
+              <input type="number" id="setback" value="7" min="7" max="25" step="1" style="max-width:160px;">
+              <span class="field-error" id="err-setback">Enter a whole number of 7 or greater.</span>
+            </div>
+          </div>
+
+          <div class="rule">
+            <label class="ruletoggle"><input type="checkbox" id="incHeight" checked> Maximum building height</label>
+            <div class="rulebody" id="body-height">
+              <span class="help">Caps how tall any house can be. Most existing homes on these blocks are one or two stories. Portsmouth's UR zoning currently allows up to 36 feet, so either option below is stricter.</span>
+              <label for="height" class="sublabel">Height limit</label>
+              <select id="height" style="max-width:320px;">
+                <option value="1">One story (up to 18 feet)</option>
+                <option value="2" selected>Two stories (up to 30 feet)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="rule">
+            <label class="ruletoggle"><input type="checkbox" id="incCoverage" checked> Maximum lot coverage</label>
+            <div class="rulebody" id="body-coverage">
+              <span class="help">&ldquo;Coverage&rdquo; is the share of your lot covered by buildings (house, porches, decks, sheds), not counting driveways. Portsmouth's UR zoning currently allows up to 55%, which is what lets a builder fill a small lot wall to wall. A lower cap keeps yard space, light, and drainage. On a typical 3,200 sq ft lot: 35% is about 1,120 sq ft of building, 40% about 1,280 sq ft, 45% about 1,440 sq ft.</span>
+              <label for="coverage" class="sublabel">Coverage limit</label>
+              <select id="coverage" style="max-width:340px;">
+                <option value="35">35% (smaller house, more yard)</option>
+                <option value="40" selected>40% (mid-range)</option>
+                <option value="45">45% (larger house, less yard)</option>
+                <option value="__other__">Other (enter a %)</option>
+              </select>
+              <div id="covOtherWrap" style="display:none;margin-top:10px;">
+                <label for="coverageOther" class="sublabel">Your coverage limit, in percent</label>
+                <span class="help">Enter a whole number. To actually restrict building, it must be below your district's current maximum (for example, 55% in UR). Avoid a number below the footprint of your existing house, or the rule could make your own home too large.</span>
+                <input type="number" id="coverageOther" min="5" max="70" step="1" style="max-width:160px;">
+                <span class="field-error" id="err-covother">Enter a whole number between 5 and 70.</span>
+              </div>
+            </div>
+          </div>
+
+          <span class="field-error" id="err-norule" style="display:none;">Turn on at least one rule to include in your document.</span>
+        </fieldset>
+
+        <fieldset>
+          <legend>Who can enforce the rule</legend>
+          <p class="help" style="margin-bottom:14px;">
+            A restriction is strongest when a specific person or group has the clear right to enforce it.
+            Choose one option below. If you are not sure, pick your civic league.
+          </p>
+
+          <label class="choice" id="ch-league">
+            <input type="radio" name="ben" value="league" checked>
+            <span class="c-body"><b>A neighborhood civic league</b>Name a civic league as the enforcer.</span>
+          </label>
+          <div class="reveal" id="rv-league">
+            <div class="field">
+              <label for="leagueSelect">Choose your civic league</label>
+              <span class="help">Choose the civic league for your neighborhood, or pick &ldquo;Other&rdquo; to type it in. Not sure which one covers your area? See the City's list: <a href="https://www.portsmouthva.gov/civic-leagues-0" target="_blank" rel="noopener">Portsmouth civic leagues</a>.</span>
+              <select id="leagueSelect"></select>
+            </div>
+            <div class="field" id="leagueOtherWrap" style="display:none;">
+              <label for="leagueOther">Civic league name</label>
+              <span class="help">Type the exact name of your civic league.</span>
+              <input type="text" id="leagueOther">
+            </div>
+          </div>
+
+          <label class="choice" id="ch-neighbors">
+            <input type="radio" name="ben" value="neighbors">
+            <span class="c-body"><b>Nearby neighbor lots</b>Name one or more nearby properties whose owners can enforce it. Strongest when those neighbors record the same restriction too.</span>
+          </label>
+          <div class="reveal" id="rv-neighbors">
+            <div class="field">
+              <label for="neighbors">Nearby lots (address and/or parcel ID, one per line)</label>
+              <span class="help">List the neighboring properties that share this protection.</span>
+              <textarea id="neighbors" placeholder="123 Example Street (GPIN 00xxxxx)&#10;125 Example Street (GPIN 00xxxxx)"></textarea>
+            </div>
+          </div>
+
+          <label class="choice" id="ch-later">
+            <input type="radio" name="ben" value="later">
+            <span class="c-body"><b>Decide with help later</b>Use a general enforcement clause now. Recommended only if you will follow up to name a specific enforcer.</span>
+          </label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" class="btn-primary">Build my document</button>
+          <button type="button" class="btn-secondary" id="resetBtn">Clear the form</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- STEP 3 / OUTPUT -->
+  <section class="step" id="output-section">
+    <div class="wrap">
+      <div class="step-head no-print">
+        <span class="step-num">3</span>
+        <span class="step-label">Print &amp; file</span>
+      </div>
+      <h2 class="no-print">Your finished document</h2>
+
+      <div class="doc-toolbar no-print">
+        <p>Review it below. When it looks right, print it or save it as a PDF, then follow the filing steps.</p>
+        <button type="button" class="btn-primary" id="printBtn">Print / Save as PDF</button>
+        <button type="button" class="btn-secondary" id="editBtn">Back to the form</button>
+      </div>
+
+      <article class="instrument" id="instrument"></article>
+
+      <div class="filing" id="filing">
+        <h3>How to file it</h3>
+        <div class="tip" style="margin-top:0;margin-bottom:12px;"><b>This page is for you. Keep it.</b> Do not hand this instruction page to the Clerk. Record only the Declaration above, plus the cover sheet from Step 3.</div>
+        <ol>
+          <li><b>Print it on plain white paper.</b> Use 8.5 by 11 inch white paper, single sided, black ink. <b>Do not sign it yet.</b></li>
+          <li><b>Sign in front of a notary.</b> Bring a photo ID. Every owner listed must sign. Notaries are available at many banks, UPS Stores, and law offices. The notary fills in the bottom section.</li>
+          <li><b>Make the required cover sheet.</b> Portsmouth requires a <b>Virginia Land Record Cover Sheet</b> on every filing. Generate one free from the city's <a href="https://www.portsmouthva.gov/228/Deeds-Land-Records" target="_blank" rel="noopener">Deeds and Land Records page</a> (or directly at the state generator, <a href="http://ccdeedcalc.courts.state.va.us/" target="_blank" rel="noopener">ccdeedcalc.courts.state.va.us</a>), print it, and place it on top of your document. <b>The field-by-field guide below tells you exactly what to enter.</b></li>
+          <li><b>Record it with the Clerk.</b> Take the signed, notarized original plus the cover sheet to the <b>Clerk of the Circuit Court</b> (the same office that keeps recorded deeds) and pay the recording fee (based on the number of pages). Confirm the current hours before you go.
+            <div class="addr">Clerk of the Circuit Court (City of Portsmouth)<br>1345 Court Street, Suite 101, Portsmouth, VA 23705-1217<br><span style="color:var(--ink-faint);">Confirm current phone and hours on the city or Virginia Courts website.</span></div>
+          </li>
+          <li><b>Keep your stamped copy.</b> The Clerk returns a recorded copy. Keep it with your important papers. The protection is now permanent and public.</li>
+        </ol>
+        <div class="tip"><b>Free bonus:</b> sign up for the Clerk's <b>VA Deed Alert</b> to get an email any time something is recorded against your name or parcel. It is an easy way to catch unwanted activity early.</div>
+        <div class="tip" style="margin-top:8px;"><b>Before you record:</b> have a Virginia real estate attorney or other real estate professional review your finished document. A quick check now prevents a rejected filing.</div>
+        <div class="csguide" id="coversheet-guide"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="no-print">
+  <div class="wrap">
+    <div class="help-box" id="helpBox" style="display:none;"></div>
+    <p class="disclaimer">
+      <b>Notice.</b> This website is a free, self help tool. It is not legal advice, and using it does not create an
+      attorney-client relationship with anyone. The document it produces is provided &ldquo;as is,&rdquo; with no warranty of any
+      kind. The people and organizations who created and share this tool are not responsible or liable for how it is
+      used, for any information you enter, or for any result of recording or not recording a document. A recorded
+      restriction is permanent and affects the title to your property, so you should have a licensed Virginia real
+      estate attorney review your document before you file it. Addresses, fees, and filing requirements can change;
+      confirm them with the Portsmouth Clerk of the Circuit Court before you file.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* help contact (optional) */
+  var helpBox=document.getElementById("helpBox");
+  if(SHOW_HELP_CONTACT){
+    helpBox.style.display="block";
+    helpBox.innerHTML="<b>Need help?</b> If any part of this is unclear, especially the legal description, contact "
+      + escapeHtml(HELP_CONTACT.name) + " at <a href='mailto:" + encodeURIComponent(HELP_CONTACT.email) + "'>"
+      + escapeHtml(HELP_CONTACT.email) + "</a>. Do not guess on the legal parts; a quick question now saves a rejected filing later.";
+  }
+
+  /* civic league dropdown */
+  var sel=document.getElementById("leagueSelect");
+  var opt0=document.createElement("option");
+  opt0.value=""; opt0.textContent="Select your civic league";
+  sel.appendChild(opt0);
+  CIVIC_LEAGUES.forEach(function(name){
+    var o=document.createElement("option"); o.value=name; o.textContent=name; sel.appendChild(o);
+  });
+  var oOther=document.createElement("option");
+  oOther.value="__other__"; oOther.textContent="Other (type the name)";
+  sel.appendChild(oOther);
+  sel.addEventListener("change",function(){
+    document.getElementById("leagueOtherWrap").style.display=(sel.value==="__other__")?"block":"none";
+  });
+
+  var covSel=document.getElementById("coverage");
+  covSel.addEventListener("change",function(){
+    document.getElementById("covOtherWrap").style.display=(covSel.value==="__other__")?"block":"none";
+  });
+
+  /* beneficiary reveal */
+  var benRadios=document.querySelectorAll("input[name=ben]");
+  function syncBen(){
+    var v=getBen();
+    toggle("rv-league", v==="league");
+    toggle("rv-neighbors", v==="neighbors");
+    document.getElementById("ch-league").classList.toggle("selected",v==="league");
+    document.getElementById("ch-neighbors").classList.toggle("selected",v==="neighbors");
+    document.getElementById("ch-later").classList.toggle("selected",v==="later");
+  }
+  benRadios.forEach(function(r){r.addEventListener("change",syncBen);});
+  function toggle(id,on){document.getElementById(id).classList.toggle("open",on);}
+  function getBen(){var c=document.querySelector("input[name=ben]:checked");return c?c.value:"league";}
+  syncBen();
+
+  function val(id){return (document.getElementById(id).value||"").trim();}
+  function escapeHtml(s){return (s||"").replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+  function esc(s){return escapeHtml(s);}
+
+  var form=document.getElementById("deedForm");
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var errors=[]; clearErrors();
+    checkRequired("owner1","Owner's full legal name",errors);
+    checkRequired("mailing","Owner mailing address",errors);
+    checkRequired("property","Property street address",errors);
+    checkRequired("gpin","Parcel ID / GPIN",errors);
+    checkRequired("zip","Property ZIP code",errors);
+    checkRequired("legal","Legal description",errors);
+
+    var anyRule=document.getElementById("incSetback").checked||document.getElementById("incHeight").checked||document.getElementById("incCoverage").checked;
+    if(!anyRule){document.getElementById("err-norule").style.display="block";errors.push({id:"incSetback",msg:"Turn on at least one rule to include"});}
+    if(document.getElementById("incSetback").checked){
+      var sb=parseInt(val("setback"),10);
+      if(isNaN(sb)||sb<7){document.getElementById("err-setback").style.display="block";errors.push({id:"setback",msg:"Minimum setback must be 7 or greater"});}
+    }
+    if(document.getElementById("incCoverage").checked && val("coverage")==="__other__"){
+      var cv=parseInt(val("coverageOther"),10);
+      if(isNaN(cv)||cv<5||cv>70){document.getElementById("err-covother").style.display="block";errors.push({id:"coverageOther",msg:"Coverage % must be a whole number between 5 and 70"});}
+    }
+
+    var ben=getBen();
+    if(ben==="league"){
+      var lv=sel.value;
+      if(!lv){errors.push({id:"leagueSelect",msg:"Choose your civic league"});markField("leagueSelect");}
+      else if(lv==="__other__" && !val("leagueOther")){errors.push({id:"leagueOther",msg:"Type your civic league's name"});markField("leagueOther");}
+    } else if(ben==="neighbors"){
+      if(!val("neighbors")){errors.push({id:"neighbors",msg:"List at least one nearby lot"});markField("neighbors");}
+    }
+
+    if(errors.length){showSummary(errors);return;}
+    buildDocument();
+    document.getElementById("output-section").classList.add("show");
+    document.getElementById("output-section").scrollIntoView({behavior:"smooth"});
+  });
+
+  function checkRequired(id,label,errors){if(!val(id)){markInvalid(id);errors.push({id:id,msg:label+" is required"});}}
+  function markInvalid(id){var f=document.getElementById(id).closest(".field");if(f)f.classList.add("invalid");}
+  function markField(id){var f=document.getElementById(id).closest(".field");if(f)f.classList.add("invalid");}
+  function clearErrors(){
+    document.querySelectorAll(".field.invalid").forEach(function(f){f.classList.remove("invalid");});
+    document.getElementById("errorSummary").classList.remove("show");
+    document.getElementById("errorList").innerHTML="";
+    document.getElementById("err-setback").style.display="none";
+    document.getElementById("err-norule").style.display="none";
+    document.getElementById("err-covother").style.display="none";
+  }
+  function showSummary(errors){
+    var list=document.getElementById("errorList");list.innerHTML="";
+    errors.forEach(function(er){
+      var li=document.createElement("li");
+      var a=document.createElement("a");a.href="#";a.textContent=er.msg;
+      a.addEventListener("click",function(ev){ev.preventDefault();var el=document.getElementById(er.id);if(el){el.focus();el.scrollIntoView({behavior:"smooth",block:"center"});}});
+      li.appendChild(a);list.appendChild(li);
+    });
+    var s=document.getElementById("errorSummary");s.classList.add("show");
+    s.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+
+  function syncRules(){
+    [["incSetback","body-setback"],["incHeight","body-height"],["incCoverage","body-coverage"]].forEach(function(p){
+      var cb=document.getElementById(p[0]);
+      var rule=cb.closest(".rule");
+      var on=cb.checked;
+      rule.classList.toggle("off",!on);
+      rule.querySelectorAll("input,select").forEach(function(el){if(el!==cb)el.disabled=!on;});
+    });
+  }
+  document.querySelectorAll("#incSetback,#incHeight,#incCoverage").forEach(function(cb){cb.addEventListener("change",syncRules);});
+  syncRules();
+
+  document.getElementById("resetBtn").addEventListener("click",function(){
+    form.reset();clearErrors();syncBen();syncRules();
+    document.getElementById("leagueOtherWrap").style.display="none";
+    document.getElementById("covOtherWrap").style.display="none";
+    document.getElementById("output-section").classList.remove("show");
+  });
+  document.getElementById("editBtn").addEventListener("click",function(){
+    document.getElementById("build").scrollIntoView({behavior:"smooth"});
+  });
+  document.getElementById("printBtn").addEventListener("click",function(){window.print();});
+
+  function buildDocument(){
+    var owner1=val("owner1"), owner2=val("owner2");
+    var owners = owner2 ? (owner1+" and "+owner2) : owner1;
+    var ownerWord = owner2 ? "owners" : "owner";
+    var mailing=val("mailing");
+    var property=val("property");
+    var zip=val("zip");
+    var gpin=val("gpin");
+    var legal=val("legal");
+    var deedref=val("deedref");
+    var sb=parseInt(val("setback"),10);
+    var hStory=(val("height")==="1")?"one (1) story":"two (2) stories";
+    var hFeet=(val("height")==="1")?"18":"30";
+    var covPick=val("coverage");
+    var cov=(covPick==="__other__")?(val("coverageOther")||"40"):(covPick||"40");
+
+    var ben=getBen(), benText="";
+    if(ben==="league"){
+      var lname=(sel.value==="__other__")?val("leagueOther"):sel.value;
+      benText="These covenants are made for the benefit of, and may be enforced by, "+esc(lname)+
+        ", a civic league serving this neighborhood, and its successors, together with the owners, from time to time, of any nearby lot that is similarly benefited.";
+    } else if(ben==="neighbors"){
+      var lots=val("neighbors").split(/\n+/).map(function(s){return s.trim();}).filter(Boolean).map(function(l){return esc(l);}).join("; ");
+      benText="These covenants are made for the benefit of, and may be enforced by, the owners, from time to time, of the following nearby lots, each of which is similarly benefited: "+lots+".";
+    } else {
+      benText="These covenants are made for the benefit of, and may be enforced by, the owners, from time to time, of the other lots in the immediate vicinity that are similarly benefited, and any neighborhood civic league or land trust that accepts the benefit of these covenants.";
+    }
+
+    var propFull=esc(property)+", Portsmouth, Virginia "+esc(zip);
+    var deedSentence=deedref
+      ? "being the same property conveyed to the Declarant by deed recorded in the aforesaid Clerk&rsquo;s Office as "+esc(deedref)+"; and"
+      : "being the same property heretofore conveyed to the Declarant of record in the aforesaid Clerk&rsquo;s Office; and";
+
+    var sigBlocks=sigBlock(owner1)+(owner2?sigBlock(owner2):"");
+
+    var incSet=document.getElementById("incSetback").checked;
+    var incHt=document.getElementById("incHeight").checked;
+    var incCov=document.getElementById("incCoverage").checked;
+
+    var clauses=[];
+    if(incSet){clauses.push({t:"Minimum Side-Yard Setback",b:"No dwelling, building, or structure shall be erected, placed, altered, or maintained on the Property unless each interior side yard is not less than "+sb+" feet in width, measured from the side lot line to the nearest wall of the structure (the &ldquo;Minimum Side-Yard Setback&rdquo;). The purpose of this restriction is to prevent any dwelling from being built so close to a side lot line that it crowds the adjoining property or diminishes the light, air, and drainage available to neighboring homes."});}
+    if(incHt){clauses.push({t:"Maximum Building Height",b:"No dwelling, building, or structure on the Property shall exceed "+hStory+" above finished grade, and in no event shall any structure exceed "+hFeet+" feet in height, measured from the average finished grade adjacent to the structure to the mean height of the roof."});}
+    if(incCov){clauses.push({t:"Maximum Building Coverage",b:"The total building coverage of the Property shall not exceed "+cov+" percent. For purposes of this Declaration, &ldquo;building coverage&rdquo; means the area of the Property covered by the footprint of all buildings and structures, including attached porches, decks, balconies, and accessory structures, but not including driveways, sidewalks, or other paved surfaces."});}
+
+    var limits=[];
+    if(incSet)limits.push("the Minimum Side-Yard Setback");
+    if(incHt)limits.push("the maximum building height");
+    if(incCov)limits.push("the maximum building coverage");
+    var limitsText=(limits.length===1)?limits[0]:(limits.slice(0,-1).join(", ")+", or "+limits[limits.length-1]);
+    clauses.push({t:"No Reduction by Variance or Special Exception",b:"The Declarant, and all successors in title, covenant not to apply for, accept, or rely upon any variance, special exception, or other zoning relief that would authorize any structure on the Property inconsistent with "+limitsText+" set forth above. Any such relief, if obtained, shall not diminish, waive, or terminate these covenants."});
+
+    var benIndex=clauses.length+2;
+    clauses.push({t:"Covenant Runs With the Land; Duration",b:"These covenants are appurtenant to and run with the land; are binding upon the Declarant and all successors, assigns, heirs, grantees, and future owners of the Property; and inure to the benefit of the beneficiaries described in Section "+benIndex+". These covenants are perpetual, and may be released or modified only by a writing signed by all then-owners of the Property and by all then-beneficiaries (or their successors) and recorded in the land records of the City of Portsmouth."});
+    clauses.push({t:"Beneficiaries and Enforcement",b:benText+" Any beneficiary may enforce these covenants by any available legal or equitable remedy, including an action for injunctive relief to restrain a violation or to compel removal of a noncompliant structure. In any successful enforcement action, the prevailing beneficiary shall be entitled to recover reasonable attorneys&rsquo; fees and costs. The failure of any beneficiary to enforce these covenants on any occasion shall not be deemed a waiver of the right to do so thereafter."});
+    clauses.push({t:"Severability",b:"If any provision of this Declaration is held invalid, the remaining provisions shall remain in full force."});
+
+    var clausesHtml=clauses.map(function(c,i){return '<p class="clause"><b>'+(i+1)+'. '+c.t+'.</b> '+c.b+'</p>';}).join("");
+
+    var html=
+      '<div class="stamp-box">Space reserved for the Clerk&rsquo;s recording stamp</div>'
+      + '<p class="meta"><b>Prepared by:</b> '+esc(owner1)+', '+esc(mailing)+'</p>'
+      + '<p class="meta"><b>After recording, return to:</b> '+esc(owner1)+', '+esc(mailing)+'</p>'
+      + '<p class="meta"><b>GPIN / Parcel ID:</b> '+esc(gpin)+'</p>'
+      + '<p class="meta"><b>Property address:</b> '+propFull+'</p>'
+
+      + '<h3 class="doc-title">Declaration of Protective Covenant</h3>'
+      + '<h3 class="doc-sub">(Protective Building Restrictions)</h3>'
+
+      + '<p>THIS DECLARATION OF PROTECTIVE COVENANT (this &ldquo;Declaration&rdquo;) is made as of the date signed below by <b>'+esc(owners)+'</b> (the &ldquo;Declarant,&rdquo; whether one or more), being the '+ownerWord+' in fee simple of the real property described below (the &ldquo;Property&rdquo;).</p>'
+
+      + '<p style="text-align:center;font-family:var(--font-ui);font-size:.8rem;letter-spacing:.14em;margin:18px 0 12px;">RECITALS</p>'
+
+      + '<p class="recital"><b>WHEREAS,</b> the Declarant owns the Property, located in the City of Portsmouth, Virginia, and more particularly described as:</p>'
+      + '<p class="recital" style="padding-left:1.4rem;">'+esc(legal)+'</p>'
+      + '<p class="recital">'+deedSentence+'</p>'
+      + '<p class="recital"><b>WHEREAS,</b> the Declarant wishes to preserve adequate light, air, drainage, fire separation between structures, and the established residential character of the neighborhood, and to prevent the overcrowding of land that results from constructing dwellings with reduced side-yard setbacks on narrow lots; and</p>'
+      + '<p class="recital"><b>WHEREAS,</b> the Declarant intends that this Declaration impose restrictions more restrictive than the minimum requirements of the City of Portsmouth Zoning Ordinance, and that these restrictions remain fully enforceable as private covenants regardless of any zoning classification, rezoning, variance, or special exception now or hereafter applicable to the Property;</p>'
+
+      + '<p><b>NOW, THEREFORE,</b> the Declarant declares that the Property shall be held, transferred, sold, conveyed, occupied, and used subject to the following covenants, which shall run with the land:</p>'
+
+      + clausesHtml
+
+      + '<p style="margin-top:20px;">WITNESS the following signature(s) and seal(s):</p>'
+      + '<div class="sig">'+sigBlocks+'</div>'
+
+      + '<div class="notary">'
+      + '<p style="margin-bottom:6px;">COMMONWEALTH OF VIRGINIA<br>CITY/COUNTY OF <span class="fill">&nbsp;</span>, to-wit:</p>'
+      + '<p>The foregoing instrument was acknowledged before me this <span class="fill">&nbsp;</span> day of <span class="fill">&nbsp;</span>, 20<span class="fill" style="min-width:40px;">&nbsp;</span>, by '+esc(owners)+'.</p>'
+      + '<p style="margin-top:14px;">My commission expires: <span class="fill">&nbsp;</span><br>Notary Registration No.: <span class="fill">&nbsp;</span></p>'
+      + '<div class="sig"><div class="line"></div><div class="cap">Notary Public</div></div>'
+      + '</div>';
+
+    document.getElementById("instrument").innerHTML=html;
+
+    var ownerReturn=esc(owner1)+(owner2?" and "+esc(owner2):"")+", "+esc(mailing);
+    var csHtml=
+      '<h4>How to fill out the cover sheet</h4>'
+      + '<p class="intro">You create this free at the state generator (linked in Step 3 above). Here is exactly what to enter for this document. Where a field does not apply, type <b>N/A</b>. The Clerk reviews the cover sheet, so if any field is unclear they will help you fix it.</p>'
+      + '<dl>'
+      + '<dt>Instrument Date</dt><dd>The date you sign in front of the notary.</dd>'
+      + '<dt>Instrument Type</dt><dd>Declaration, shown as &ldquo;DEC&rdquo; in the list (type &ldquo;dec&rdquo; to jump to it).</dd>'
+      + '<dt>Number of Parcels</dt><dd>1</dd>'
+      + '<dt>Number of Pages</dt><dd>The number of printed pages of your Declaration (usually 2). The generator adds its own cover-sheet page.</dd>'
+      + '<dt>City / County</dt><dd>City of Portsmouth</dd>'
+      + '<dt>Consideration</dt><dd>0 (nothing is being sold, so there is no transfer tax, only a small per-page recording fee). Leave the tax-exemption boxes unchecked.</dd>'
+      + '<dt>Grantor</dt><dd>'+esc(owners)+' (this is you, the person making the rule).</dd>'
+      + '<dt>Grantee</dt><dd>'+esc(owners)+' (enter your own name again; there is no other party, and this keeps the record under your name).</dd>'
+      + '<dt>Grantee Address</dt><dd>'+esc(mailing)+'</dd>'
+      + '<dt>Parcel ID / PIN and Tax Map Number</dt><dd>'+esc(gpin)+' (if only one of the two fields applies, enter N/A in the other).</dd>'
+      + '<dt>Short Property Description</dt><dd>'+esc(property)+', Portsmouth, VA '+esc(zip)+'</dd>'
+      + '<dt>Instrument Prepared By</dt><dd>'+esc(owner1)+'</dd>'
+      + '<dt>Recording Paid For By</dt><dd>'+esc(owner1)+'</dd>'
+      + '<dt>Return Recording To</dt><dd>'+ownerReturn+'</dd>'
+      + '</dl>'
+      + '<p class="csnote">After you fill these in, check the Terms box on the Review &amp; Print tab and print the cover sheet. Place it on top of your signed Declaration when you record.</p>';
+    document.getElementById("coversheet-guide").innerHTML=csHtml;
+  }
+
+  function sigBlock(name){
+    return '<div style="margin-bottom:16px;"><div class="line"></div>'
+      + '<div class="cap">'+esc(name)+' (SEAL)</div>'
+      + '<div class="cap" style="margin-top:12px;">Date: <span class="fill" style="min-width:170px;">&nbsp;</span></div></div>';
+  }
+
+})();
+</script>
+</body>
+</html>
